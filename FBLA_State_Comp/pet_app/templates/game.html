@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pet Game</title>
+</head>
+<body>
+    <h1>{{ pet.name }} ({{ pet.type }})</h1>
+
+    <img src="{{ url_for('static', filename=image) }}" width="100">
+    <p>Inventory:</p>
+<ul>
+    <li>Food: {{ session.inventory["Food"] }}</li>
+    <li>Water: {{ session.inventory["Water"] }}</li>
+    <li>Toy: {{ session.inventory["Toy"] }}</li>
+    <li>Rent: {{ session.inventory["Rent"] }}</li>
+</ul>
+
+<a href="/shop">Go to Shop</a>
+    <br>
+    <p>Hunger: {{ pet.hunger }}</p>
+    <p>Thirst: {{ pet.thirst }}</p>
+    <p>Happiness: {{ pet.happiness }}</p>
+    <p>Energy: {{ pet.energy }}</p>
+    <p>Age: {{ pet.age }}</p>
+    <p>Wallet: ${{ session.wallet }}</p>
+
+    <form method="POST">
+        <button name="action" value="feed">Feed</button>
+        <button name="action" value="drink">Drink</button>
+        <button name="action" value="play">Play</button>
+        <button name="action" value="sleep">Sleep</button>
+        <button name="action" value="wait">Wait</button>
+    </form>
+</body>
+</html>
