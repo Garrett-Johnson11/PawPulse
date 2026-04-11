@@ -4,8 +4,9 @@ body {
     background: linear-gradient(135deg, #74ebd5, #acb6e5);
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    padding: 20px;
 }
 .container {
     background: white;
@@ -14,6 +15,7 @@ body {
     width: 350px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     text-align: center;
+    margin-bottom: 20px;
 }
 img {
     border-radius: 12px;
