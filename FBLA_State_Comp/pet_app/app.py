@@ -12,7 +12,7 @@ SHOP = {
     "Rent": {"cost": 66}
 }
 class Pet:
-    def __init__(self, name, pet_type):
+    def __init__(self, name, pet_type): #Makes a New Pet
         self.name = name
         self.type = pet_type
         self.hunger = 50
@@ -32,7 +32,7 @@ class Pet:
             self.energy -= 10
     def sleep(self):
         self.energy = min(100, self.energy + 30)
-    def pass_time(self):
+    def pass_time(self): #Advances Time and Does Checks
         self.hunger += 2
         self.thirst += 2
         self.energy -= 3
@@ -40,7 +40,7 @@ class Pet:
         self.age += 1
         if self.hunger >= 100 or self.thirst >= 100 or self.happiness <= 0 or self.energy <= 0:
             self.alive = False
-    def get_state(self):
+    def get_state(self): #Looks at Emotions for Sprite
         if self.alive == False:
             return "dead"
         if self.hunger > 70 or self.thirst > 70:
@@ -74,7 +74,8 @@ def game():
     pet = Pet(pet_data["name"], pet_data["type"])
     pet.__dict__.update(pet_data)
     inventory = session["inventory"]
-    if request.method == "POST":
+    #The Following if Statement and Everything Inside of it Does a Function Based on What Type of Action is Preformed.
+    if request.method == "POST": 
         action = request.form["action"]
         if action == "feed":
             if inventory["Food"] > 0:
@@ -90,11 +91,12 @@ def game():
         elif action == "sleep":
             pet.sleep()
     pet.pass_time()
+    #Economic Functions
     inventory["Rent"] -= 1
     wallet = session["wallet"]
     wallet += 77 #Average Daily Pay for Mcdonalds Worker
-    randomExpense = random.randint(0, 10)
-    wallet -= randomExpense
+    randomExpense = random.randint(0, 15)
+    wallet -= randomExpense #Adds a Kind of Randomness Similarly to Life
     if inventory["Rent"] < 1 and wallet > 66:
         inventory["Rent"] += 1
         wallet -= 66
