@@ -94,11 +94,13 @@ def game():
     #Economic Functions
     inventory["Rent"] -= 1
     wallet = session["wallet"]
+    totalCost = 0
     wallet += 77 #Average Daily Pay for Mcdonalds Worker
     randomExpense = random.randint(0, 15)
     wallet -= randomExpense #Adds a Kind of Randomness Similarly to Life
     if inventory["Rent"] < 1 and wallet > 66:
         inventory["Rent"] += 1
+        totalCost += 66
         wallet -= 66
     elif inventory["Rent"] < 1 and wallet < 66:
         pet.alive = False
@@ -122,6 +124,7 @@ def shop():
         item = request.form["item"]
         if wallet >= SHOP[item]["cost"]:
             wallet -= SHOP[item]["cost"]
+            totalCost += SHOP[item]["cost"]
             inventory[item] += 1
         session["wallet"] = wallet
         session["inventory"] = inventory
