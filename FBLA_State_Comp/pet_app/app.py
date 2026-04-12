@@ -128,6 +128,7 @@ def shop():
             inventory[item] += 1
         session["wallet"] = wallet
         session["inventory"] = inventory
+        session["totalCost"] = totalCost
     return render_template("shop.html", shop=SHOP, wallet=wallet, inventory=inventory)
 if __name__ == "__main__":
     app.run(debug=True)
